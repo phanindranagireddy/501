@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Player Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+    header {
+      background-color: #fff; 
+      color: #333; 
+      padding: 10px 20px; 
+      margin-bottom: 20px;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+    }
+    .navbar {
+      background-color: #000;
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h3 {
+      font-size: 1.875rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #000;
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #cbd5e0;
+    }
+    .container {
+    flex: 1; 
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    h1 {
+      color: #000; 
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    h2 {
+      color: #000;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #000; 
+      border-radius: 4px;
+      background-color: #fff; 
+      color: #333; 
+    }
+    .session-details {
+      margin-bottom: 10px;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .logout {
+      display: inline-block;
+      margin-top: 20px;
+      text-align: center;
+      color: #fff; 
+      background-color: #ff7200; 
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    .logout:hover {
+      background-color: #c0392b; 
+    }
+    .join-form {
+      display: inline-block;
+    }
+    .footer {
+    background-color: #000;
+    color: #cbd5e0;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: auto; 
+}
+
+    .footer-text {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      margin: 0 0.5rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+      color: #cbd5e0;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-3px);
+      color: #e2e8f0;
+    }
+    
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h3>Sports Management</h3>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="/dashboard" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link">Logout</a>
+      </li>
+      
+    </ul>
+  </nav>
+  <header>
+    <h1 style="font-size: 24px; margin: 0;">Player Dashboard</h1>
+    <div>
+      <h2>Welcome, <%= user.username %></h2>
+    </div>
+  </header>
+  <div class="container">
+    <section>
+      <h2>Available Sessions</h2>
+      <% if (availableSessions && availableSessions.length > 0) { %>
+        <ul>
+          <% availableSessions.forEach(session => { %>
+            <li>
+              <div class="session-details">
+                <strong>Sport:</strong> <%= session.sport_name %><br> 
+                <strong>Date:</strong> <%= session.date %><br>
+                <strong>Venue:</strong> <%= session.venue %><br>
+                <strong>Please Join:</strong> <%= user.username %><br>
+                <% if (session.players && session.players.length > 0) { %>
+                  <strong>Players:</strong>
+                  <ul>
+                    <% session.players.forEach(player => { %>
+                      <li><%= player.name %> (<%= player.role %>)</li>
+                    <% }) %>
+                  </ul>
+                <% } else { %>
+                  <em>No players have joined this session yet.</em>
+                <% } %>
+              </div>
+              <form action="/join-session/<%= session.session_id %>" method="POST" class="join-form">
+                <button type="submit">Join Session</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No sessions available to join.</p>
+      <% } %>
+    </section>
+    
+    <section>
+      <h2>Your Joined Sessions</h2>
+      <% if (joinedSessions && joinedSessions.length > 0) { %>
+        <ul>
+          <% joinedSessions.forEach(session => { %>
+            <li>
+              <div class="session-details">
+                <strong>Sport:</strong> <%= session.sport_name %><br> 
+                <strong>Date:</strong> <%= session.date %><br>
+                <strong>Venue:</strong> <%= session.venue %><br>
+                <strong>Created at:</strong> <%= session.created_at %><br>
+                <strong>Joined by:</strong> <%= user.username %><br>
+                <% if (session.players && session.players.length > 0) { %>
+                  <strong>Players:</strong>
+                  <ul>
+                    <% session.players.forEach(player => { %>
+                      <li><%= player.name %> (<%= player.role %>)</li>
+                    <% }) %>
+                  </ul>
+                <% } else { %>
+                  <em>You have joined this session.</em>
+                <% } %>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>You have not joined any sessions yet.</p>
+      <% } %>
+    </section>
+    <div class="button-container">
+      <a href="/logout" class="logout">Logout</a>
+    </div>
+  </div>
+  <br>
+  <br>
+  <footer class="footer">
+    <div class="footer-text">Contact Us: prudhvi@gmail.com | Phone: 9876543219</div>
+    <div class="social-icons">
+      Follow Us:
+      <a href="#">Twitter</a>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Management Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f3f4f6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #000;
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h3 {
+      font-size: 1.875rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #cbd5e0;
+    }
+
+    .main-content {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .heading {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+
+    .sub-heading {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .info {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .features {
+      margin-top: 3rem;
+      padding: 4rem 1rem;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-heading {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 4rem;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background-color: #f9fafb;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .card-heading {
+      font-size: 1.875rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .card-description {
+      font-size: 1.125rem;
+      color: #4b5563;
+    }
+
+    .icon {
+      width: 3.125rem;
+      height: 3.125rem;
+      margin-bottom: 1rem;
+    }
+
+    .blue {
+      color: #3b82f6;
+    }
+
+    .green {
+      color: #10b981;
+    }
+
+    .purple {
+      color: #8b5cf6;
+    }
+
+    .yellow {
+      color: #f59e0b;
+    }
+
+    .red {
+      color: #ef4444;
+    }
+
+    .footer {
+      background-color: #000;
+      color: #cbd5e0;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: #cbd5e0;
+      margin: 0 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #e2e8f0;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      margin: 0 0.5rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-3px);
+    }
+    
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .main-content {
+        padding-top: 4rem;
+      }
+
+      .heading {
+        font-size: 2.5rem;
+      }
+
+      .sub-heading {
+        font-size: 2rem;
+      }
+
+      .info {
+        font-size: 1.25rem;
+      }
+
+      .features {
+        padding: 2rem;
+      }
+
+      .section-heading {
+        font-size: 2rem;
+      }
+
+      .feature-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <h3>Sports Management</h3>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="/dashboard" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link">Login</a>
+        </li>
+        <li class="nav-item">
+          <a href="/register" class="nav-link">Register</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="max-width main-content">
+      <p class="heading">Plan and organize sports events...</p>
+      <p class="sub-heading">with Sports Management</p>
+      <p class="info">Join today to create, schedule, and participate in sports events.</p>
+
+      <section id="features" class="features">
+        <h2 class="section-heading">Key Features</h2>
+        <div class="feature-cards">
+
+          <div class="feature-card">
+            <h3 class="card-heading">Schedule Games</h3>
+            <p class="card-description">Effortlessly schedule upcoming games and events with our intuitive scheduling tools.</p>
+          </div>
+
+          
+          <div class="feature-card">
+            <h3 class="card-heading">Rankings</h3>
+            <p class="card-description">Stay updated with the latest rankings and leaderboards for various sports events.</p>
+          </div>
+
+          <div class="feature-card">
+            <h3 class="card-heading">Mobile Access</h3>
+            <p class="card-description">Access all features on the go with our mobile-friendly platform.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-text">Contact Us: prudhvi@gmail.com | Phone: 9876543219</div>
+    <div class="social-icons">
+      Follow Us:
+      <a>Twitter</a>
+      <a>Facebook</a>
+      <a>Instagram</a>
+    </div>
+  </footer>
+
+</body>
+</html>

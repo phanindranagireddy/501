@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="/sports_management/public/styles.css"> 
+  <style>
+    .form {
+      width: 250px;
+      height: 420px; 
+      background: black;
+      position: absolute;
+      top: 30%;
+      left: 40%;
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .form h2 {
+      width: 220px;
+      font-family: sans-serif;
+      color: #ff7200;
+      font-size: 22px;
+      background-color: white;
+      border-radius: 10px;
+      margin: 2px;
+      padding: 8px;
+    }
+
+    .form input, .form select {
+      width: 240px;
+      height: 35px;
+      background: transparent;
+      border-bottom: 1px solid #ff7200;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      color: #fff;
+      font-size: 15px;
+      letter-spacing: 1px;
+      margin-top: 20px; /* Adjusted margin-top for better spacing */
+      font-family: sans-serif;
+    }
+
+    .btn {
+      width: 240px;
+      height: 40px;
+      background: #ff7200;
+      border: none;
+      margin-top: 30px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #ff7200;
+    }
+
+    .btn a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .form .link {
+      color: #fff;
+      font-size: 17px;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .form .link a {
+      text-decoration: none;
+      color: #ff7200;
+    }
+
+    .liw {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="register-page">
+  <form action="/register" method="POST" class="form">
+    <h2>Register here</h2>
+    <input type="text" name="username" placeholder="Enter your username" required>
+    <input type="email" name="email" placeholder="Enter email here" required>
+    <input type="password" name="password" placeholder="Enter password here" required>
+    <select name="role" required>
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+    <button type="submit" class="btn">Register</button>
+    <p class="link">Already have an account?<br>
+      <a href="/login">Login</a>
+    </p>
+  </form>
+  </div>
+</body>
+</html>

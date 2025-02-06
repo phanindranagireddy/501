@@ -1,0 +1,101 @@
+
+#login-page {
+  background-image: url("/images/login.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#register-page {
+  background-image: url("/images/register.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#admin-dashboard {
+  background-image: url("/images/reports.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#player-dashboard {
+  background-image: url("/images/player.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#reports-page {
+  background-image: url("/images/register.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard h1 {
+  text-align: center;
+}
+
+.dashboard .logout {
+  align-self: flex-end;
+}
+
+.dashboard .content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard .content > div {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.dashboard .content ul {
+  margin-top: 0;
+}
+
+/* Table Styles for Reports */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #333;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.report-link {
+  display: block;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.report-link:hover {
+  background-color: #45a049;
+}

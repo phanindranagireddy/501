@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0; 
+      color: #333; 
+      margin: 0; 
+    }
+    header {
+      background-color: #fff; 
+      color: #000; 
+      text-align: right; 
+      padding: 10px 20px; 
+      margin-bottom: 20px;
+      border-radius: 8px 8px 0 0;
+      display: flex; 
+      justify-content: space-between;
+      align-items: center; 
+    }
+    .navbar {
+      background-color: #000; 
+      color: #fff; 
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h3 {
+      font-size: 1.875rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-item {
+      margin: 0;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #cbd5e0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+      gap: 20px; 
+    }
+    .section-container {
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden; 
+      border: 1px solid #000; 
+      display: flex;
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+    }
+
+    .section-container > .box {
+      padding: 20px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .sports-section {
+      background-color: #fff; 
+      color: #000; 
+    }
+
+    .create-sport-section {
+      background-color: #fff; 
+      color: #000; 
+    }
+
+    .create-session-section {
+      background-color: #fff; 
+      color: #000; 
+    }
+
+    .all-sessions-section {
+      background-color: #fff; 
+      color: #000; 
+    }
+
+    h1, h2 {
+      color: #000; 
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    ul, ol {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 15px;
+    }
+
+    form.inline-form {
+      display: inline-block;
+      margin-right: 10px; 
+    }
+
+    button[type="submit"] {
+      background-color: #ff7200; 
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #fff;
+      color: #ff7200; 
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+      width: calc(100% - 16px); 
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .logout, .report-link {
+      display: inline-block; 
+      text-align: center;
+      color: #333; 
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    .logout {
+      background-color: #e74c3c; 
+      margin-right: 10px; 
+    }
+
+    .logout:hover {
+      background-color: #c0392b; 
+    }
+
+    .report-link {
+      background-color: #ff7200; 
+    }
+
+    .report-link:hover {
+      background-color: #000; 
+      color: #fff; 
+    }
+
+    .centered-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .footer {
+      background-color: #000; 
+      color: #fff; 
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-link {
+      text-decoration: none;
+      color: #cbd5e0;
+      margin: 0 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #e2e8f0;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      margin: 0 0.5rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-3px);
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr; 
+      }
+    }
+  </style>
+</head>
+<body>
+  <body>
+    <nav class="navbar">
+      <h3>Sports Management</h3>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="/dashboard" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="/logout" class="nav-link">Logout</a>
+        </li>
+      </ul>
+    </nav>
+    <header>
+      <h1 style="font-size: 24px; margin: 0;">Admin Dashboard</h1>
+      <div>
+        <h2>Welcome, <%= user.username %></h2>
+      </div>
+    </header>
+    <div class="container">
+    
+      <div class="section-container sports-section">
+        <h2>Sports</h2>
+        <div class="box">
+          <% if (sports && sports.length > 0) { %>
+            <ul>
+              <% sports.forEach(sport => { %>
+                <li>
+                  <%= sport.name %>
+                  <form action="/delete-sport/<%= sport.id %>" method="POST" class="inline-form">
+                    <button type="submit">Delete</button>
+                  </form>
+                </li>
+              <% }); %>
+            </ul>
+          <% } else { %>
+            <p>No sports found.</p>
+          <% } %>
+        </div>
+      </div>
+      
+      <div class="section-container create-sport-section">
+        <h2>Create Sport</h2>
+        <div class="box">
+          <form action="/create-sport" method="POST">
+            <label for="sport_name">Sport Name:</label>
+            <input type="text" id="sport_name" name="name" required />
+            <button type="submit">Create Sport</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="section-container create-session-section">
+        <h2>Create Session</h2>
+        <div class="box">
+          <form action="/create-session" method="POST">
+            <label for="sport_id">Sport:</label>
+            <select id="sport_id" name="sport_id" required>
+              <% if (sports && sports.length > 0) { %>
+                <% sports.forEach(sport => { %>
+                  <option value="<%= sport.id %>"><%= sport.name %></option>
+                <% }); %>
+              <% } %>
+            </select>
+            <label for="session_date">Date:</label>
+            <input type="date" id="session_date" name="date" required />
+            <label for="venue">Venue:</label>
+            <input type="text" id="venue" name="venue" required />
+            <button type="submit">Create Session</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="section-container all-sessions-section">
+        <h2>All Sessions</h2>
+        <div class="box">
+          <% if (sessions && sessions.length > 0) { %>
+            <ul>
+              <% sessions.forEach(session => { %>
+                <li>
+                  <strong>Sport:</strong> <%= session.sport_name %><br> 
+                  <strong>Date:</strong> <%= session.date %><br>
+                  <strong>Venue:</strong> <%= session.venue %><br>
+                  <strong>Created at:</strong> <%= session.created_at %><br>
+                  <strong>Created by:</strong> <%= user.username %><br>
+                  
+                  <form action="/edit-session/<%= session.id %>" method="POST" class="inline-form">
+                    <button type="submit">Edit</button>
+                  </form>
+                                  
+                  <form action="/delete-session/<%= session.id %>" method="POST" class="inline-form">
+                    <button type="submit">Delete</button>
+                  </form>
+                </li>
+              <% }); %>
+            </ul>
+          <% } else { %>
+            <p>No sessions found.</p>
+          <% } %>
+        </div>
+      </div>
+      
+    </div>
+  
+    <div class="centered-links">
+      <a href="/logout" class="logout">Logout</a>
+      <a href="/reports" class="report-link">View Reports</a>
+    </div>
+    <br>
+    <br>
+    <footer class="footer">
+      <div class="footer-text">Contact Us: prudhvi@gmail.com | Phone: 9876543219</div>
+      <div class="social-icons">
+        Follow Us:
+        <a>Twitter</a>
+        <a>Facebook</a>
+        <a>Instagram</a>
+      </div>
+    </footer>
+  </body>
+</html>
